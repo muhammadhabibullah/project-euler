@@ -7,9 +7,7 @@ func ProblemTwoA(limit int) (sum int) {
 			sum += i
 		}
 
-		tmp := i
-		i = next
-		next += tmp
+		next, i = next+i, next
 	}
 	return
 }
