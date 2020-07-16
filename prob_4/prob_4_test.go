@@ -1,34 +1,49 @@
 package prob4
 
-import (
-	"testing"
-)
+import "testing"
+
+type palindromeValidation func(int) bool
 
 func TestProblemFourA(t *testing.T) {
-	solutions := map[string]func(below int) int{
+	solutions := map[string]func(int, func(int) bool) int{
 		"super brute force": ProblemFourA,
 		//"smarter":     ProblemFourB,
 	}
-	outputs := map[int]int{
-		1: 9,
-		2: 9009,
-		3: 906609,
-		//4: 99000099,
+	tests := map[int]struct {
+		input  int
+		isPal  palindromeValidation
+		output int
+	}{
+		1: {1, isIntPalindrome, 9},
+		2: {1, isStrPalindrome, 9},
+		3: {2, isIntPalindrome, 9009},
+		4: {2, isStrPalindrome, 9009},
+		5: {3, isIntPalindrome, 906609},
+		6: {3, isStrPalindrome, 906609},
+		7: {4, isIntPalindrome, 99000099},
+		8: {4, isStrPalindrome, 99000099},
 	}
 
 	for solutionName, solutionFunc := range solutions {
-		for input, expected := range outputs {
-			answer := solutionFunc(input)
-			if answer != expected {
+		for _, ts := range tests {
+			got := solutionFunc(ts.input, ts.isPal)
+			expected := ts.output
+			if got != ts.output {
 				t.Errorf("%s solution for %d-digit number give wrong answer: %d, expected: %d",
-					solutionName, input, answer, expected)
+					solutionName, ts.input, got, expected)
 			}
 		}
 	}
 }
 
-func BenchmarkProblemThreeA(b *testing.B) {
+func BenchmarkProblemThreeAInt(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		ProblemFourA(3)
+		ProblemFourA(3, isIntPalindrome)
+	}
+}
+
+func BenchmarkProblemThreeAStr(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		ProblemFourA(3, isStrPalindrome)
 	}
 }
