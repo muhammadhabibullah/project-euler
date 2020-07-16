@@ -36,13 +36,13 @@ func TestProblemFourA(t *testing.T) {
 	}
 }
 
-func BenchmarkProblemThreeAInt(b *testing.B) {
+func BenchmarkProblemThreeA1(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		ProblemFourA(3, isIntPalindrome)
 	}
 }
 
-func BenchmarkProblemThreeAStr(b *testing.B) {
+func BenchmarkProblemThreeA2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		ProblemFourA(3, isStrPalindrome)
 	}

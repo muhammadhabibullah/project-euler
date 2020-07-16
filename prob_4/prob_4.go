@@ -60,11 +60,10 @@ func isStrPalindrome(num int) bool {
 	return str == reverse(str)
 }
 
-func ProblemFourA(digit int, isPalindrome func(int) bool) int {
+func ProblemFourA(digit int, isPalindrome func(int) bool) (pal int) {
 
 	a, b := 1, 1
 	limit := largestNumber(digit)
-	var pal int
 
 	for a <= limit {
 		for b <= limit {
@@ -78,9 +77,9 @@ func ProblemFourA(digit int, isPalindrome func(int) bool) int {
 		b = a
 	}
 
-	return pal
+	return
 }
 
-func ProblemFourB(digit int) int {
-	return 0
+func ProblemFourB(digit int) (pal int) {
+	return
 }
