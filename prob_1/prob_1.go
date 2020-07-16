@@ -1,9 +1,9 @@
 package prob1
 
-func ProblemOneA(below int) (sum int) {
+func ProblemOneA(x, y, limit int) (sum int) {
 	var i = 1
-	for i < below {
-		if (i%3) == 0 || (i%5) == 0 {
+	for i < limit {
+		if (i%x) == 0 || (i%y) == 0 {
 			sum += i
 		}
 		i++
@@ -11,10 +11,11 @@ func ProblemOneA(below int) (sum int) {
 	return
 }
 
-func ProblemOneB(below int) int {
-	addDivisible := func(div, above, below int) (sum int) {
-		i := above + 1
-		for i < below {
+func ProblemOneB(x, y, limit int) int {
+	xy := x * y
+	countAllDivisibleSum := func(div, bottomLimit, upLimit int) (sum int) {
+		i := bottomLimit + 1
+		for i < upLimit {
 			if (i % div) == 0 {
 				sum += i
 			}
@@ -22,17 +23,16 @@ func ProblemOneB(below int) int {
 		}
 		return
 	}
-	countDivisible := func(div, below int) int {
-		return (below / div) * (below + div) / 2
+	calculateAllDivisibleSum := func(div, limit int) int {
+		return (limit / div) * (limit + div) / 2
 	}
 
-	greatestDivisorBelow := below - (below % (3 * 5))
+	greatestDivisible := limit - (limit % (xy))
+	aboveGDDivisibleSum := countAllDivisibleSum(x, greatestDivisible, limit) +
+		countAllDivisibleSum(y, greatestDivisible, limit)
+	divisibleByX := calculateAllDivisibleSum(x, greatestDivisible)
+	divisibleByY := calculateAllDivisibleSum(y, greatestDivisible)
+	divisibleByXY := calculateAllDivisibleSum(xy, greatestDivisible)
 
-	aboveGDBSum := addDivisible(3, greatestDivisorBelow, below) +
-		addDivisible(5, greatestDivisorBelow, below)
-	divisibleBy3 := countDivisible(3, greatestDivisorBelow)
-	divisibleBy5 := countDivisible(5, greatestDivisorBelow)
-	divisibleBy15 := countDivisible(15, greatestDivisorBelow)
-
-	return aboveGDBSum + divisibleBy3 + divisibleBy5 - divisibleBy15
+	return aboveGDDivisibleSum + divisibleByX + divisibleByY - divisibleByXY
 }
