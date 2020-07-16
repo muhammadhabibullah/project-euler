@@ -28,7 +28,7 @@ func TestProblemFourA(t *testing.T) {
 		for _, ts := range tests {
 			got := solutionFunc(ts.input, ts.isPal)
 			expected := ts.output
-			if got != ts.output {
+			if got != expected {
 				t.Errorf("%s solution for %d-digit number give wrong answer: %d, expected: %d",
 					solutionName, ts.input, got, expected)
 			}
