@@ -19,7 +19,8 @@ func TestProblemFive(t *testing.T) {
 		io       []io
 		solution func(int, int) int
 	}{
-		"use lcm & gcd": {inputOutput, ProblemFiveA},
+		"use lcm & gcd":     {inputOutput, ProblemFiveA},
+		"without lcm & gcd": {inputOutput, ProblemFiveB},
 	}
 
 	for testName, ts := range testCases {
@@ -38,3 +39,16 @@ func BenchmarkProblemFiveA(b *testing.B) {
 		ProblemFiveA(1, 20)
 	}
 }
+
+func BenchmarkProblemFiveB(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		ProblemFiveB(1, 20)
+	}
+}
+
+//goos: linux
+//goarch: amd64
+//pkg: project-euler/prob_5
+//BenchmarkProblemFiveA-8   	  749502	      1583 ns/op
+//BenchmarkProblemFiveB-8   	 1222333	       973 ns/op
+//PASS
