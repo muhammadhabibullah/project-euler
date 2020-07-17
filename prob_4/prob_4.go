@@ -107,3 +107,37 @@ func ProblemFourB(digit int, isPalindrome func(int) bool) (pal int) {
 
 	return
 }
+
+func ProblemFourC(digit int, isPalindrome func(int) bool) (pal int) {
+	if digit == 1 {
+		return 9
+	}
+
+	a := largestNumber(digit)
+	bottomLimit := smallestNumber(digit)
+
+	for a >= bottomLimit {
+		var b, db int
+		if (a % 11) == 0 {
+			b = largestNumber(digit)
+			db = 1
+		} else {
+			b = largestNumber(digit) - (largestNumber(digit) % 11)
+			db = 11
+		}
+		for b >= a {
+			ab := a * b
+			if ab <= pal {
+				break
+			}
+
+			if isPalindrome(ab) {
+				pal = ab
+			}
+			b -= db
+		}
+		a--
+	}
+
+	return
+}
