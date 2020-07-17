@@ -14,14 +14,16 @@ func TestProblemFourA(t *testing.T) {
 		isPal  palindromeValidation
 		output int
 	}{
-		1: {1, isIntPalindrome, 9},
-		2: {1, isStrPalindrome, 9},
-		3: {2, isIntPalindrome, 9009},
-		4: {2, isStrPalindrome, 9009},
-		5: {3, isIntPalindrome, 906609},
-		6: {3, isStrPalindrome, 906609},
-		7: {4, isIntPalindrome, 99000099},
-		8: {4, isStrPalindrome, 99000099},
+		1:  {1, isIntPalindrome, 9},
+		2:  {1, isStrPalindrome, 9},
+		3:  {2, isIntPalindrome, 9009},
+		4:  {2, isStrPalindrome, 9009},
+		5:  {3, isIntPalindrome, 906609},
+		6:  {3, isStrPalindrome, 906609},
+		7:  {4, isIntPalindrome, 99000099},
+		8:  {4, isStrPalindrome, 99000099},
+		9:  {5, isIntPalindrome, 9966006699},
+		10: {5, isStrPalindrome, 9966006699},
 	}
 
 	for solutionName, solutionFunc := range solutions {

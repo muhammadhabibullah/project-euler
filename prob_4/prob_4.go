@@ -71,8 +71,10 @@ func ProblemFourA(digit int, isPalindrome func(int) bool) (pal int) {
 	for a <= upperLimit {
 		for b <= upperLimit {
 			ab := a * b
-			if isPalindrome(ab) && ab > pal {
-				pal = ab
+			if ab > pal {
+				if isPalindrome(ab) {
+					pal = ab
+				}
 			}
 			b++
 		}
@@ -98,10 +100,8 @@ func ProblemFourB(digit int, isPalindrome func(int) bool) (pal int) {
 			if isPalindrome(ab) {
 				pal = ab
 			}
-
 			b--
 		}
-
 		a--
 	}
 
