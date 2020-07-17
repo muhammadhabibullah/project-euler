@@ -6,8 +6,8 @@ type palindromeValidation func(int) bool
 
 func TestProblemFourA(t *testing.T) {
 	solutions := map[string]func(int, func(int) bool) int{
-		"super brute force": ProblemFourA,
-		//"smarter":     ProblemFourB,
+		"super brute force":  ProblemFourA,
+		"faster brute force": ProblemFourB,
 	}
 	tests := map[int]struct {
 		input  int
@@ -45,5 +45,17 @@ func BenchmarkProblemThreeA1(b *testing.B) {
 func BenchmarkProblemThreeA2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		ProblemFourA(3, isStrPalindrome)
+	}
+}
+
+func BenchmarkProblemThreeB1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		ProblemFourB(3, isIntPalindrome)
+	}
+}
+
+func BenchmarkProblemThreeB2(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		ProblemFourB(3, isStrPalindrome)
 	}
 }

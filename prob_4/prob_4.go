@@ -6,6 +6,10 @@ import (
 	"unicode/utf8"
 )
 
+func smallestNumber(digit int) int {
+	return int(math.Pow(float64(10), float64(digit-1)))
+}
+
 func largestNumber(digit int) int {
 	return int(math.Pow(float64(10), float64(digit))) - 1
 }
@@ -61,12 +65,11 @@ func isStrPalindrome(num int) bool {
 }
 
 func ProblemFourA(digit int, isPalindrome func(int) bool) (pal int) {
+	a, b := smallestNumber(digit), smallestNumber(digit)
+	upperLimit := largestNumber(digit)
 
-	a, b := 1, 1
-	limit := largestNumber(digit)
-
-	for a <= limit {
-		for b <= limit {
+	for a <= upperLimit {
+		for b <= upperLimit {
 			ab := a * b
 			if isPalindrome(ab) && ab > pal {
 				pal = ab
@@ -80,6 +83,27 @@ func ProblemFourA(digit int, isPalindrome func(int) bool) (pal int) {
 	return
 }
 
-func ProblemFourB(digit int) (pal int) {
+func ProblemFourB(digit int, isPalindrome func(int) bool) (pal int) {
+	a := largestNumber(digit)
+	bottomLimit := smallestNumber(digit)
+
+	for a >= bottomLimit {
+		b := largestNumber(digit)
+		for b >= a {
+			ab := a * b
+			if ab <= pal {
+				break
+			}
+
+			if isPalindrome(ab) {
+				pal = ab
+			}
+
+			b--
+		}
+
+		a--
+	}
+
 	return
 }
