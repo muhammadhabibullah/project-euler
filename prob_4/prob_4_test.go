@@ -2,10 +2,8 @@ package prob4
 
 import "testing"
 
-type palindromeValidator func(int) bool
-
 func TestProblemFour(t *testing.T) {
-	solutions := map[string]func(int, func(int) bool) int{
+	solutions := map[string]func(int, palindromeValidator) int{
 		//"brute force from bottom": ProblemFourA,
 		"brute force from upper": ProblemFourB,
 		"with 11 divisible":      ProblemFourC,

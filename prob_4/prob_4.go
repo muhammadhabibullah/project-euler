@@ -13,6 +13,8 @@ func largestNumber(digit int) int {
 	return int(math.Pow(float64(10), float64(digit))) - 1
 }
 
+type palindromeValidator func(int) bool
+
 func isIntPalindrome(num int) bool {
 	var remainder int
 	var reverse = 0
@@ -40,7 +42,7 @@ func isStrPalindrome(num int) bool {
 	return true
 }
 
-func ProblemFourA(digit int, isPalindrome func(int) bool) (pal int) {
+func ProblemFourA(digit int, isPalindrome palindromeValidator) (pal int) {
 	a, b := smallestNumber(digit), smallestNumber(digit)
 	upperLimit := largestNumber(digit)
 
@@ -61,7 +63,7 @@ func ProblemFourA(digit int, isPalindrome func(int) bool) (pal int) {
 	return
 }
 
-func ProblemFourB(digit int, isPalindrome func(int) bool) (pal int) {
+func ProblemFourB(digit int, isPalindrome palindromeValidator) (pal int) {
 	a := largestNumber(digit)
 	bottomLimit := smallestNumber(digit)
 
@@ -84,7 +86,7 @@ func ProblemFourB(digit int, isPalindrome func(int) bool) (pal int) {
 	return
 }
 
-func ProblemFourC(digit int, isPalindrome func(int) bool) (pal int) {
+func ProblemFourC(digit int, isPalindrome palindromeValidator) (pal int) {
 	if digit == 1 {
 		return 9
 	}
