@@ -15,36 +15,20 @@ func largestNumber(digit int) int {
 }
 
 func isIntPalindrome(num int) bool {
-	if num < 10 {
-		return true
-	}
-
-	div := 1
-	for div <= num {
-		div *= 10
-	}
-
-	var arrNum []int
+	var remainder int
+	var reverse = 0
 	tmpNum := num
-	for tmpNum > 0 {
-		div /= 10
-		if div > tmpNum {
-			arrNum = append(arrNum, 0)
-		} else {
-			divNum := tmpNum / div
-			arrNum = append(arrNum, divNum)
-			tmpNum -= divNum * div
+
+	for {
+		remainder = num % 10
+		reverse = reverse*10 + remainder
+		num /= 10
+		if num == 0 {
+			break
 		}
 	}
 
-	var pal int
-	mtp := 1
-	for _, n := range arrNum {
-		pal += mtp * n
-		mtp *= 10
-	}
-
-	return pal == num
+	return tmpNum == reverse
 }
 
 // https://stackoverflow.com/questions/1752414/how-to-reverse-a-string-in-go

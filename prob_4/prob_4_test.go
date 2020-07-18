@@ -25,6 +25,16 @@ func TestProblemFour(t *testing.T) {
 		8:  {4, isStrPalindrome, 99000099},
 		9:  {5, isIntPalindrome, 9966006699},
 		10: {5, isStrPalindrome, 9966006699},
+		//11: {6, isIntPalindrome, 999000000999},
+		//12: {6, isStrPalindrome, 999000000999},
+		//13: {7, isIntPalindrome, 99956644665999},
+		//14: {7, isStrPalindrome, 99956644665999},
+		//15: {8, isIntPalindrome, 9999000000009999},
+		//16: {8, isStrPalindrome, 9999000000009999},
+		//17: {9, isIntPalindrome, 999900665566009999},
+		//18: {9, isStrPalindrome, 999900665566009999},
+		//19: {10, isIntPalindrome, 99999000000000099999},
+		//20: {10, isStrPalindrome, 99999000000000099999},
 	}
 
 	for solutionName, solutionFunc := range solutions {
@@ -78,10 +88,16 @@ func BenchmarkProblemThreeC2(b *testing.B) {
 //goos: linux
 //goarch: amd64
 //pkg: project-euler/prob_4
-//BenchmarkProblemThreeA1-8   	      64	  18399625 ns/op
-//BenchmarkProblemThreeA2-8   	     100	  10155324 ns/op
-//BenchmarkProblemThreeB1-8   	    1054	   1161568 ns/op
-//BenchmarkProblemThreeB2-8   	    1662	    632030 ns/op
-//BenchmarkProblemThreeC1-8   	    3910	    264803 ns/op
-//BenchmarkProblemThreeC2-8   	    6909	    178976 ns/op
+//BenchmarkProblemThreeA1
+//BenchmarkProblemThreeA1-8   	    1276	    839759 ns/op
+//BenchmarkProblemThreeA2
+//BenchmarkProblemThreeA2-8   	     138	   8296592 ns/op
+//BenchmarkProblemThreeB1
+//BenchmarkProblemThreeB1-8   	   20264	     58269 ns/op
+//BenchmarkProblemThreeB2
+//BenchmarkProblemThreeB2-8   	    2478	    575498 ns/op
+//BenchmarkProblemThreeC1
+//BenchmarkProblemThreeC1-8   	   22626	     52154 ns/op
+//BenchmarkProblemThreeC2
+//BenchmarkProblemThreeC2-8   	   10000	    126212 ns/op
 //PASS
