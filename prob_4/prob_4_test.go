@@ -2,48 +2,41 @@ package prob4
 
 import "testing"
 
-type palindromeValidation func(int) bool
+type palindromeValidator func(int) bool
 
 func TestProblemFour(t *testing.T) {
 	solutions := map[string]func(int, func(int) bool) int{
-		"brute force from bottom": ProblemFourA,
-		"brute force from upper":  ProblemFourB,
-		"with 11 divisible":       ProblemFourC,
+		//"brute force from bottom": ProblemFourA,
+		"brute force from upper": ProblemFourB,
+		"with 11 divisible":      ProblemFourC,
+	}
+	palindromeValidators := []palindromeValidator{
+		isIntPalindrome,
+		isStrPalindrome,
 	}
 	tests := map[int]struct {
-		input  int
-		isPal  palindromeValidation
-		output int
+		validators []palindromeValidator
+		output     int
 	}{
-		1:  {1, isIntPalindrome, 9},
-		2:  {1, isStrPalindrome, 9},
-		3:  {2, isIntPalindrome, 9009},
-		4:  {2, isStrPalindrome, 9009},
-		5:  {3, isIntPalindrome, 906609},
-		6:  {3, isStrPalindrome, 906609},
-		7:  {4, isIntPalindrome, 99000099},
-		8:  {4, isStrPalindrome, 99000099},
-		9:  {5, isIntPalindrome, 9966006699},
-		10: {5, isStrPalindrome, 9966006699},
-		//11: {6, isIntPalindrome, 999000000999},
-		//12: {6, isStrPalindrome, 999000000999},
-		//13: {7, isIntPalindrome, 99956644665999},
-		//14: {7, isStrPalindrome, 99956644665999},
-		//15: {8, isIntPalindrome, 9999000000009999},
-		//16: {8, isStrPalindrome, 9999000000009999},
-		//17: {9, isIntPalindrome, 999900665566009999},
-		//18: {9, isStrPalindrome, 999900665566009999},
-		//19: {10, isIntPalindrome, 99999000000000099999},
-		//20: {10, isStrPalindrome, 99999000000000099999},
+		1: {palindromeValidators, 9},
+		2: {palindromeValidators, 9009},
+		3: {palindromeValidators, 906609},
+		4: {palindromeValidators, 99000099},
+		5: {palindromeValidators, 9966006699},
+		6: {palindromeValidators, 999000000999},
+		7: {palindromeValidators, 99956644665999},
+		//8: {palindromeValidators, 9999000000009999},
 	}
 
 	for solutionName, solutionFunc := range solutions {
-		for _, ts := range tests {
-			got := solutionFunc(ts.input, ts.isPal)
-			expected := ts.output
-			if got != expected {
-				t.Errorf("%s solution for %d-digit number give wrong answer: %d, expected: %d",
-					solutionName, ts.input, got, expected)
+		for input, ts := range tests {
+			for _, validator := range ts.validators {
+				got := solutionFunc(input, validator)
+				expected := ts.output
+				if got != expected {
+					t.Errorf("%s solution for %d-digit number give wrong answer: %d, expected: %d",
+						solutionName, input, got, expected)
+				}
 			}
 		}
 	}
@@ -89,15 +82,15 @@ func BenchmarkProblemThreeC2(b *testing.B) {
 //goarch: amd64
 //pkg: project-euler/prob_4
 //BenchmarkProblemThreeA1
-//BenchmarkProblemThreeA1-8   	    1276	    839759 ns/op
+//BenchmarkProblemThreeA1-8   	    1748	    636240 ns/op
 //BenchmarkProblemThreeA2
-//BenchmarkProblemThreeA2-8   	     138	   8296592 ns/op
+//BenchmarkProblemThreeA2-8   	     474	   2635308 ns/op
 //BenchmarkProblemThreeB1
-//BenchmarkProblemThreeB1-8   	   20264	     58269 ns/op
+//BenchmarkProblemThreeB1-8   	   20824	     60098 ns/op
 //BenchmarkProblemThreeB2
-//BenchmarkProblemThreeB2-8   	    2478	    575498 ns/op
+//BenchmarkProblemThreeB2-8   	    5618	    187848 ns/op
 //BenchmarkProblemThreeC1
-//BenchmarkProblemThreeC1-8   	   22626	     52154 ns/op
+//BenchmarkProblemThreeC1-8   	   20672	     55237 ns/op
 //BenchmarkProblemThreeC2
-//BenchmarkProblemThreeC2-8   	   10000	    126212 ns/op
+//BenchmarkProblemThreeC2-8   	   16497	     73894 ns/op
 //PASS

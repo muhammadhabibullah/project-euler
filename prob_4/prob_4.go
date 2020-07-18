@@ -3,7 +3,6 @@ package prob4
 import (
 	"math"
 	"strconv"
-	"unicode/utf8"
 )
 
 func smallestNumber(digit int) int {
@@ -31,21 +30,14 @@ func isIntPalindrome(num int) bool {
 	return tmpNum == reverse
 }
 
-// https://stackoverflow.com/questions/1752414/how-to-reverse-a-string-in-go
-func reverse(s string) string {
-	size := len(s)
-	buf := make([]byte, size)
-	for start := 0; start < size; {
-		r, n := utf8.DecodeRuneInString(s[start:])
-		start += n
-		utf8.EncodeRune(buf[size-start:], r)
-	}
-	return string(buf)
-}
-
 func isStrPalindrome(num int) bool {
-	str := strconv.Itoa(num)
-	return str == reverse(str)
+	numStr := strconv.Itoa(num)
+	for i := 0; i < len(numStr)/2; i++ {
+		if numStr[i] != numStr[len(numStr)-i-1] {
+			return false
+		}
+	}
+	return true
 }
 
 func ProblemFourA(digit int, isPalindrome func(int) bool) (pal int) {
