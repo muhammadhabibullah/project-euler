@@ -13,6 +13,8 @@ func TestProblemFive(t *testing.T) {
 	inputOutput := []io{
 		{1, 10, 2520},
 		{1, 20, 232792560},
+		{1, 30, 2329089562800},
+		{1, 40, 5342931457063200},
 	}
 
 	testCases := map[string]struct {
@@ -57,9 +59,9 @@ func BenchmarkProblemFiveC(b *testing.B) {
 //goarch: amd64
 //pkg: project-euler/prob_5
 //BenchmarkProblemFiveA
-//BenchmarkProblemFiveA-8   	 1562252	       700 ns/op
+//BenchmarkProblemFiveA-8   	 2324925	       498 ns/op
 //BenchmarkProblemFiveB
-//BenchmarkProblemFiveB-8   	 2218903	       539 ns/op
+//BenchmarkProblemFiveB-8   	 2196723	       542 ns/op
 //BenchmarkProblemFiveC
-//BenchmarkProblemFiveC-8   	  786739	      1346 ns/op
+//BenchmarkProblemFiveC-8   	  758619	      1323 ns/op
 //PASS

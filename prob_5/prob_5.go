@@ -16,8 +16,10 @@ func lcm(a, b int) int {
 func ProblemFiveA(a, b int) (sm int) {
 	sm = a
 	for a <= b {
-		ab := lcm(a, b)
-		sm = lcm(sm, ab)
+		if (sm % a) > 0 {
+			ab := lcm(a, b)
+			sm = lcm(sm, ab)
+		}
 		a++
 	}
 	return
