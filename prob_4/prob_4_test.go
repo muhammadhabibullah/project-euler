@@ -24,10 +24,9 @@ func TestProblemFour(t *testing.T) {
 	}
 
 	for solutionName, solutionFunc := range solutions {
-		for input, ts := range tests {
+		for input, expected := range tests {
 			for _, validator := range palindromeValidators {
 				got := solutionFunc(input, validator)
-				expected := ts
 				if got != expected {
 					t.Errorf("%s solution for %d-digit number give wrong answer: %d, expected: %d",
 						solutionName, input, got, expected)

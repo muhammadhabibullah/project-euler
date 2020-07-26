@@ -5,13 +5,10 @@ import (
 )
 
 func TestProblemSix(t *testing.T) {
-	inputOutputs := []struct {
-		input  int
-		output int
-	}{
-		{10, 2640},
-		{100, 25164150},
-		{1000, 250166416500},
+	inputOutputs := map[int]int{
+		10:   2640,
+		100:  25164150,
+		1000: 250166416500,
 	}
 
 	solutions := map[string]func(int) int{
@@ -19,10 +16,9 @@ func TestProblemSix(t *testing.T) {
 		"arithmetic":  ProblemSixB,
 	}
 
-	for _, io := range inputOutputs {
-		for solutionName, solution := range solutions {
-			got := solution(io.input)
-			expected := io.output
+	for input, expected := range inputOutputs {
+		for solutionName, solutionFunc := range solutions {
+			got := solutionFunc(input)
 			if got != expected {
 				t.Errorf("%s solution function give wrong answer : %d; expected: %d", solutionName, got, expected)
 			}
