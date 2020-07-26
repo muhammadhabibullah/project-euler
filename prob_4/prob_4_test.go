@@ -12,25 +12,22 @@ func TestProblemFour(t *testing.T) {
 		isIntPalindrome,
 		isStrPalindrome,
 	}
-	tests := map[int]struct {
-		validators []palindromeValidator
-		output     int
-	}{
-		1: {palindromeValidators, 9},
-		2: {palindromeValidators, 9009},
-		3: {palindromeValidators, 906609},
-		4: {palindromeValidators, 99000099},
-		5: {palindromeValidators, 9966006699},
-		6: {palindromeValidators, 999000000999},
-		7: {palindromeValidators, 99956644665999},
-		//8: {palindromeValidators, 9999000000009999},
+	tests := map[int]int{
+		1: 9,
+		2: 9009,
+		3: 906609,
+		4: 99000099,
+		5: 9966006699,
+		6: 999000000999,
+		7: 99956644665999,
+		//8: 9999000000009999,
 	}
 
 	for solutionName, solutionFunc := range solutions {
 		for input, ts := range tests {
-			for _, validator := range ts.validators {
+			for _, validator := range palindromeValidators {
 				got := solutionFunc(input, validator)
-				expected := ts.output
+				expected := ts
 				if got != expected {
 					t.Errorf("%s solution for %d-digit number give wrong answer: %d, expected: %d",
 						solutionName, input, got, expected)
