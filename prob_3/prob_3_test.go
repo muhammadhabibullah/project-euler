@@ -28,3 +28,12 @@ func BenchmarkProblemThreeB(b *testing.B) {
 		ProblemThreeB(600851475143)
 	}
 }
+
+//goos: linux
+//goarch: amd64
+//pkg: project-euler/prob_3
+//BenchmarkProblemThreeA
+//BenchmarkProblemThreeA-8   	  239806	      4368 ns/op
+//BenchmarkProblemThreeB
+//BenchmarkProblemThreeB-8   	  130840	      8594 ns/op
+//PASS

@@ -17,21 +17,18 @@ func TestProblemFive(t *testing.T) {
 		{1, 40, 5342931457063200},
 	}
 
-	testCases := map[string]struct {
-		io       []io
-		solution func(int, int) int
-	}{
-		"use lcm & gcd":     {inputOutput, ProblemFiveA},
-		"without lcm & gcd": {inputOutput, ProblemFiveB},
-		"use nth prime":     {inputOutput, ProblemFiveC},
+	solutions := map[string]func(int, int) int{
+		"use lcm & gcd":     ProblemFiveA,
+		"without lcm & gcd": ProblemFiveB,
+		"use nth prime":     ProblemFiveC,
 	}
 
-	for testName, ts := range testCases {
-		for _, io := range ts.io {
-			got := ts.solution(io.input1, io.input2)
+	for solutionName, solutionFunc := range solutions {
+		for _, io := range inputOutput {
+			got := solutionFunc(io.input1, io.input2)
 			expected := io.output
 			if got != expected {
-				t.Errorf("%s solution function give wrong answer : %d; expected: %d", testName, got, expected)
+				t.Errorf("%s solution function give wrong answer : %d; expected: %d", solutionName, got, expected)
 			}
 		}
 	}

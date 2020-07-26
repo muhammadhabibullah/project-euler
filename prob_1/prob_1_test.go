@@ -28,3 +28,12 @@ func BenchmarkProblemOneB(b *testing.B) {
 		ProblemOneB(3, 5, 1000)
 	}
 }
+
+//goos: linux
+//goarch: amd64
+//pkg: project-euler/prob_1
+//BenchmarkProblemOneA
+//BenchmarkProblemOneA-8   	  170623	      7107 ns/op
+//BenchmarkProblemOneB
+//BenchmarkProblemOneB-8   	12228836	        97.1 ns/op
+//PASS
