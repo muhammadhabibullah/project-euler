@@ -26,23 +26,23 @@ func TestProblemSix(t *testing.T) {
 	}
 }
 
-func BenchmarkProblemFiveA(b *testing.B) {
+func BenchmarkProblemSixA(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		ProblemSixA(100)
 	}
 }
 
-func BenchmarkProblemFiveB(b *testing.B) {
+func BenchmarkProblemSixB(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		ProblemSixB(100)
 	}
 }
 
-//goos: linux
+//goos: darwin
 //goarch: amd64
 //pkg: project-euler/prob_6
-//BenchmarkProblemFiveA
-//BenchmarkProblemFiveA-8   	20764658	        52.2 ns/op
-//BenchmarkProblemFiveB
-//BenchmarkProblemFiveB-8   	1000000000	         0.500 ns/op
+//BenchmarkProblemSixA
+//BenchmarkProblemSixA-4   	11563064	        92.2 ns/op
+//BenchmarkProblemSixB
+//BenchmarkProblemSixB-4   	1000000000	         0.352 ns/op
 //PASS
