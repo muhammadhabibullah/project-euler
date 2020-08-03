@@ -49,19 +49,20 @@ func ProblemEightA2(digit int) (maxProduct int) {
 next:
 	for i := 0; i < limit; i++ {
 		product := 1
-		for j := i; j < (i + digit); j++ {
-			multiply := parseNth(digits[j])
-			if multiply == 0 {
-				lastProduct = 0
-				continue next
+
+		if lastProduct != 0 {
+			div := parseNth(digits[i-1])
+			mul := parseNth(digits[i+digit-1])
+			product = lastProduct * mul / div
+		} else {
+			for j := i; j < (i + digit); j++ {
+				multiply := parseNth(digits[j])
+				if multiply == 0 {
+					lastProduct = 0
+					continue next
+				}
+				product *= multiply
 			}
-			if lastProduct != 0 {
-				div := parseNth(digits[j-1])
-				mul := parseNth(digits[j+digit-1])
-				product = lastProduct * mul / div
-				break
-			}
-			product *= multiply
 		}
 
 		if maxProduct < product {
