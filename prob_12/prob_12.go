@@ -19,6 +19,8 @@ func countDivs(n int) (count int) {
 	return
 }
 
+// ProblemTwelveA count incrementally into get it's total divisors
+// above the maximum input using count divisor function input
 func ProblemTwelveA(maxDivs int, countDivFn countDivFn) int {
 	var triangleNum int
 	i := 1
