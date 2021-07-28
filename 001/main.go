@@ -8,8 +8,6 @@ import (
 	"strings"
 )
 
-// https://www.hackerrank.com/contests/projecteuler/challenges/euler001/problem
-
 type SolutionOf001 func(x, y, limit int) int
 
 func BruteForce(x, y, limit int) (sum int) {
